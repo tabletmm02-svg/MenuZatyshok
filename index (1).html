@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Меню — Ресторан «Затишок»</title>
+<style>
+:root{--bg:#faf6ef;--fg:#2b2118;--card:#fff;--acc:#8a3b12;--mut:#7a6c5d;--line:#e6dccb;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1713;--fg:#f3ebe0;--card:#272019;--acc:#e08a54;--mut:#b5a794;--line:#3b3228;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1713;--fg:#f3ebe0;--card:#272019;--acc:#e08a54;--mut:#b5a794;--line:#3b3228;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Georgia,'Times New Roman',serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:28px;margin:0 0 4px;color:var(--acc)}
+.sub{color:var(--mut);margin:0 0 16px;font-family:Arial,sans-serif;font-size:14px}
+#zone{background:var(--acc);color:#fff;padding:10px 14px;border-radius:10px;font-family:Arial,sans-serif;font-size:15px;margin-bottom:18px}
+h2{font-size:20px;border-bottom:2px solid var(--line);padding-bottom:4px;margin:24px 0 8px}
+.it{display:flex;justify-content:space-between;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.it b{display:block;font-size:16px}.it small{color:var(--mut);font-family:Arial,sans-serif;font-size:13px}
+.p{white-space:nowrap;font-family:Arial,sans-serif;font-weight:bold;color:var(--acc)}
+button{width:100%;margin-top:20px;padding:14px;font-size:16px;border:0;border-radius:10px;background:var(--acc);color:#fff}
+#msg{margin-top:12px;font-family:Arial,sans-serif;text-align:center}
+</style></head><body><main>
+<h1>Ресторан «Затишок»</h1>
+<p class="sub">Електронне меню · щодня 10:00–23:00</p>
+<div id="zone"></div>
+<div id="menu"></div>
+<button id="order">Замовити та сплатити</button>
+<div id="msg"></div>
+</main>
+<script>
+var M=[["Закуски",[["Брускета з томатами","Хліб, томати, базилік, оливкова олія · 120 г",95],["Сирна тарілка","Три види сиру, мед, горіхи · 150 г",180],["Мариновані гриби","Печериці з зеленню та цибулею · 100 г",85]]],
+["Перші страви",[["Борщ український","Зі сметаною та пампушками · 300 г",110],["Крем-суп грибний","Вершки, печериці, грінки · 250 г",105]]],
+["Другі страви",[["Стейк зі свинини","Овочі-гриль, соус · 250 г",285],["Філе курки на грилі","Картопляне пюре, салат · 300 г",190],["Вареники з картоплею","Зі шкварками та сметаною · 250 г",120],["Паста карбонара","Бекон, пармезан, жовток · 280 г",175]]],
+["Десерти",[["Чізкейк","Класичний, ягідний соус · 130 г",110],["Медовик","Домашній рецепт · 130 г",95]]],
+["Напої",[["Узвар","Сухофрукти · 250 мл",45],["Лимонад домашній","Лимон, м'ята · 400 мл",75],["Кава американо","Свіжообсмажена · 200 мл",60],["Чай трав'яний","Чайник · 500 мл",70]]]];
+var Z={"stil-1":"Ви замовляєте зі столика №1","stil-5":"Ви замовляєте зі столика №5","terasa":"Ви замовляєте з літньої тераси"};
+function z(){var h=location.hash.replace("#","");document.getElementById("zone").textContent=Z[h]||"Ласкаво просимо! Оберіть страви з меню";}
+z();window.addEventListener("hashchange",z);
+var o="";M.forEach(function(c){o+="<h2>"+c[0]+"</h2>";c[1].forEach(function(i){o+='<div class="it"><div><b>'+i[0]+"</b><small>"+i[1]+'</small></div><div class="p">'+i[2]+" грн</div></div>"});});
+document.getElementById("menu").innerHTML=o;
+document.getElementById("order").onclick=function(){document.getElementById("msg").textContent="Дякуємо! Офіціант підійде до вас найближчим часом."};
+</script></body></html>
